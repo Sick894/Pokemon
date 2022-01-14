@@ -1,9 +1,15 @@
 import time
 import numpy as np
 import sys
-import os
 
 
+
+def typewriter(s):
+    
+    for c in s:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.05)
 
 class Pokemon:
     def __init__(self, name, types, moves, EVs, health='==================='):
@@ -25,20 +31,20 @@ class Pokemon:
         # Print fight information
         typewriter("-----POKEMON BATTLE-----")
         typewriter(f"\n{self.name}")
-        print("\nTYPE/", self.types)
-        print("ATTACK/", self.attack)
-        print("DEFENSE/", self.defense)
-        print("LVL/", 3*(1+np.mean([self.attack,self.defense])))
-        time.sleep(2)
+        print("\nTYPE: ", self.types)
+        print("ATTACK; ", self.attack)
+        print("DEFENSE: ", self.defense)
+        print("LVL: ", 3*(1+np.mean([self.attack,self.defense])))
+        time.sleep(1)
         typewriter("\nVS\n")
 
         typewriter(f"\n{Pokemon2.name}")
-        print("\nTYPE/", Pokemon2.types)
-        print("ATTACK/", Pokemon2.attack)
-        print("DEFENSE/", Pokemon2.defense)
-        print("LVL/", 3*(1+np.mean([Pokemon2.attack,Pokemon2.defense])))
+        print("\nTYPE: ", Pokemon2.types)
+        print("ATTACK: ", Pokemon2.attack)
+        print("DEFENSE: ", Pokemon2.defense)
+        print("LVL: ", 3*(1+np.mean([Pokemon2.attack,Pokemon2.defense])))
 
-        time.sleep(2)
+        time.sleep(1)
 
         # Consider type advantages
         version = ['Fire', 'Water', 'Grass']
@@ -51,19 +57,19 @@ class Pokemon:
 
                 # Pokemon2 is STRONG
                 if Pokemon2.types == version[(i+1)%3]:
-                    Pokemon2.attack *= 2
-                    Pokemon2.defense *= 2
-                    self.attack /= 2
-                    self.defense /= 2
+                    Pokemon2.attack *= 1.5
+                    Pokemon2.defense *= 1.5
+                    self.attack /= 1/2
+                    self.defense /= 1/2
                     String_1_attack = '\nIts not very effective...'
                     String_2_attack = '\nIts super effective!'
 
                 # Pokemon2 is WEAK
                 if Pokemon2.types == version[(i+2)%3]:
-                    self.attack *= 2
-                    self.defense *= 2
-                    Pokemon2.attack /= 2
-                    Pokemon2.defense /= 2
+                    self.attack *= 1.5
+                    self.defense *= 1.5
+                    Pokemon2.attack /= 1/2
+                    Pokemon2.defense /= 1/2
                     String_1_attack = '\nIts super effective!'
                     String_2_attack = '\nIts not very effective...'
 
@@ -129,54 +135,13 @@ class Pokemon:
                 break
 
         money = np.random.choice(345600)
-        typewriter(f"\nOpponent paid you ${money}.\n")
-
-if __name__ == '__main__':
-    #Create Pokemon
-    Charizard = Pokemon('Charizard', 'Fire', ['Flamethrower', 'Fly', 'Blast Burn', 'Fire Punch'], {'ATTACK':12, 'DEFENSE': 8})
-    Blastoise = Pokemon('Blastoise', 'Water', ['Water Gun', 'Bubblebeam', 'Hydro Pump', 'Surf'],{'ATTACK': 10, 'DEFENSE':10})
-    Venusaur = Pokemon('Venusaur', 'Grass', ['Vine Wip', 'Razor Leaf', 'Earthquake', 'Frenzy Plant'],{'ATTACK':8, 'DEFENSE':12})
-
-    Charmander = Pokemon('Charmander', 'Fire', ['Ember', 'Scratch', 'Tackle', 'Fire Punch'],{'ATTACK':4, 'DEFENSE':2})
-    Squirtle = Pokemon('Squirtle', 'Water', ['Bubblebeam', 'Tackle', 'Headbutt', 'Surf'],{'ATTACK': 3, 'DEFENSE':3})
-    Bulbasaur = Pokemon('Bulbasaur', 'Grass', ['Vine Wip', 'Razor Leaf', 'Tackle', 'Leech Seed'],{'ATTACK':2, 'DEFENSE':4})
-
-    Charmeleon = Pokemon('Charmeleon', 'Fire', ['Ember', 'Scratch', 'Flamethrower', 'Fire Punch'],{'ATTACK':6, 'DEFENSE':5})
-    Wartortle = Pokemon('Wartortle', 'Water', ['Bubblebeam', 'Water Gun', 'Headbutt', 'Surf'],{'ATTACK': 5, 'DEFENSE':5})
-    Ivysaur = Pokemon('Ivysaur\t', 'Grass', ['Vine Wip', 'Razor Leaf', 'Bullet Seed', 'Leech Seed'],{'ATTACK':4, 'DEFENSE':6})
+        if self.bars<=0:
+          typewriter(f"\nYou had to pay your opponent ${money}.\n")
+        if Pokemon2.bars<=0:
+          typewriter(f"\nYour Opponent paid you ${money}. \n")
 
 
-# typewriter
-while 3!=2:
-  print('\n Choose your Pokemon')
-  print("\nPick a Pokemon")
-  print('1.Charzard\n')
-  print('2.Blastoise\n')
-  print ('3.Venusaur\n')
-  print('4.Charmander\n')
-  print('5.Squirtle\n')
-  print('6.Balbusaur\n')
-  print('7.Charmeleon\n')
-  print('8.Wartortle\n')
-  print('9.Ivysaur')
-  pokemon=input('')
-  os.system('clear')
 
-  #if input=1
-  if pokemon==('1'):
-    self=Charizard
-  if pokemon==('2'):
-    self==Blastoise
-  if pokemon('3'):
-    self==Venusaur
-  if pokemon('4'):
-    self==
-def typewriter(s):
-    
-    for c in s:
-        sys.stdout.write(c)
-        sys.stdout.flush()
-        time.sleep(0.05)
 ''
 # Create the class
 
@@ -197,4 +162,4 @@ if __name__ == '__main__':
     Ivysaur = Pokemon('Ivysaur\t', 'Grass', ['Vine Wip', 'Razor Leaf', 'Bullet Seed', 'Leech Seed'],{'ATTACK':4, 'DEFENSE':6})
 
 
-    Charizard.fight(Blastoise) # Get them to fight
+    Ivysaur.fight(Charizard) # Get them to fight
